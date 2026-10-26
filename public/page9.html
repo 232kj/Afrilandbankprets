@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Afriland First Bank - Crédit Approuvé</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        :root { --purple-primary: #6b21a8; }
+        body { background-color: var(--purple-primary); margin: 0; padding: 20px 15px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        .screen-container { width: 100%; max-width: 400px; background-color: #ffffff; border-radius: 28px; padding: 30px 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.15); display: flex; flex-direction: column; align-items: center; }
+        .check-circle { width: 80px; height: 80px; background: var(--purple-primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 38px; font-weight: 900; margin-bottom: 20px; }
+        .amount-box { width: 100%; background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%); border-radius: 16px; padding: 22px; text-align: center; color: white; margin-bottom: 25px; }
+        .amount-value { font-size: 32px; font-weight: 900; }
+        .home-btn { background-color: var(--purple-primary); color: white; border: none; width: 100%; padding: 16px; border-radius: 12px; font-size: 16px; font-weight: 800; cursor: pointer; text-transform: uppercase; }
+    </style>
+</head>
+<body>
+    <div class="screen-container">
+        <div class="check-circle">✓</div>
+        <h2>Félicitations !</h2>
+        <p style="text-align: center; color: #4b5563; font-size: 14px; margin-bottom: 20px;">Votre crédit a été approuvé par Afriland First Bank.</p>
+
+        <div class="amount-box">
+            <div style="font-size: 12px; font-weight: 800; margin-bottom: 5px;">MONTANT ACCORDÉ</div>
+            <div class="amount-value" id="display-amount">300 000 XAF</div>
+        </div>
+
+        <button class="home-btn" onclick="window.location.href='/'">Retour à l'accueil</button>
+    </div>
+
+    <script>
+        window.onload = () => {
+            const loanAmount = localStorage.getItem('loan_amount') || localStorage.getItem('amount') || "300000";
+            document.getElementById('display-amount').innerText = Number(loanAmount).toLocaleString('fr-FR') + " XAF";
+        };
+    </script>
+</body>
+</html>
